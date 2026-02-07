@@ -24,8 +24,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
-            'publisher=my_py_pkg.publisher:main',
-            'subscriber=my_py_pkg.subscriber:main',
+            'publisher=hello_world.publisher:main',
+            'subscriber=hello_world.subscriber:main',
         ],
     },
 )
