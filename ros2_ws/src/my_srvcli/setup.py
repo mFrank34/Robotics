@@ -8,7 +8,7 @@ setup(
     packages=find_packages(exclude=['test']),
     data_files=[
         ('share/ament_index/resource_index/packages',
-            ['resource/' + package_name]),
+         ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
     ],
     install_requires=['setuptools'],
@@ -24,6 +24,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'add_two_ints_server=my_srvcli.add_two_ints_server:main',
+            'add_two_ints_client=my_srvcli.add_two_ints_client:main',
         ],
     },
 )
