@@ -9,6 +9,7 @@ from rclpy.node import Node
 class AddTwoIntsClient(Node):
     def __init__(self):
         super().__init__('add_two_ints_client')
+        self.future = None
         self.client = self.create_client(
             AddTwoInts,
             'add_two_ints'
@@ -29,7 +30,7 @@ class AddTwoIntsClient(Node):
 
 
 def main():
-    # Initialise the ROS client library
+    # Initialize the ROS client library
     rclpy.init()
     if len(sys.argv) == 3:
         try:

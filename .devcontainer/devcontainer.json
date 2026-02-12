@@ -17,9 +17,9 @@
     }
   },
   "remoteEnv": {
-    "PYTHONPATH": "/opt/ros/humble/lib/python3.10/site-packages",
+    "PYTHONPATH": "/opt/ros/humble/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages",
     "ROS_DISTRO": "humble"
   },
-  "postCreateCommand": "echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc",
+  "postCreateCommand": "git config --global --add safe.directory /workspace && echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc"
   "workspaceFolder": "/workspace"
 }
