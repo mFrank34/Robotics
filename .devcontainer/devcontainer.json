@@ -1,19 +1,25 @@
 {
   "name": "ROS2 Humble Desktop Full",
   "image": "osrf/ros:humble-desktop-full",
+  "remoteUser": "root",
   "runArgs": [
     "--network=host",
-    "-e", "DISPLAY=${env:DISPLAY}",
-    "-v", "/tmp/.X11-unix:/tmp/.X11-unix"
+    "-e",
+    "DISPLAY=${env:DISPLAY}",
+    "-v",
+    "/tmp/.X11-unix:/tmp/.X11-unix",
+    "--cap-add=SYS_PTRACE",
+    "--security-opt=seccomp=unconfined"
   ],
   "customizations": {
-    "vscode": {
-      "extensions": [
-        "ms-python.python",
-        "ms-vscode.cpptools",
-        "ms-azuretools.vscode-docker"
-      ]
+    "jetbrains": {
+      "backend": "PyCharm"
     }
   },
-  "postCreateCommand": "echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc"
+  "remoteEnv": {
+    "PYTHONPATH": "/opt/ros/humble/lib/python3.10/site-packages",
+    "ROS_DISTRO": "humble"
+  },
+  "postCreateCommand": "echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc",
+  "workspaceFolder": "/workspace"
 }
