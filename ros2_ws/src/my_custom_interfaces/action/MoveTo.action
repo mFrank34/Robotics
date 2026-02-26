@@ -1,0 +1,8 @@
+# goal def
+float32 target_distance
+---
+# result def
+float32 total_distance_travelled
+---
+# feedback def
+float32 current_distance_travelled

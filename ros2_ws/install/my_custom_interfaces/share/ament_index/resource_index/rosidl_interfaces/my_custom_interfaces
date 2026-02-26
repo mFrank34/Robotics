@@ -1,3 +1,5 @@
+action/MoveTo.action
+action/MoveTo.idl
 srv/AddThreeInts.idl
 srv/AddThreeInts.srv
 srv/AddThreeInts_Request.msg
