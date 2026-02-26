@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'AddThreeInts'
+package_name = 'add_three_ints'
 
 setup(
     name=package_name,
@@ -24,6 +24,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'add_three_ints_server=add_three_ints.Server:main',
+            'add_three_ints_client=add_three_ints.Client:main',
         ],
     },
 )
