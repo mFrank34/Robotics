@@ -6,7 +6,7 @@
   "runArgs": [
     "--network=host",
     "-e", "DISPLAY=:0",
-    "-v", "/tmp/.X11-unix:/tmp/.X11-unix",
+    "-v", "/tmp/.X11-unix:/tmp/.X11-unix:z",
     "--cap-add=SYS_PTRACE",
     "--security-opt=seccomp=unconfined",
     "--userns=keep-id"
