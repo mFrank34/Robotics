@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="PYTHON_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/ros2_ws/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ros2_ws/install/AddThreeInts/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/ros2_ws/install/AddThreeInts/share/add_three_ints" />
+      <excludeFolder url="file://$MODULE_DIR$/ros2_ws/install/hello_world/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/ros2_ws/install/my_custom_interfaces/include/my_custom_interfaces/my_custom_interfaces/action" />
+      <excludeFolder url="file://$MODULE_DIR$/ros2_ws/install/my_custom_interfaces/include/my_custom_interfaces/my_custom_interfaces/srv/detail/dds_fastrtps" />
+      <excludeFolder url="file://$MODULE_DIR$/ros2_ws/install/my_custom_interfaces/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/ros2_ws/install/my_custom_interfaces/local" />
+      <excludeFolder url="file://$MODULE_DIR$/ros2_ws/install/my_custom_interfaces/share/my_custom_interfaces/action" />
+      <excludeFolder url="file://$MODULE_DIR$/ros2_ws/install/my_srvcli/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/ros2_ws/install/pioneer/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/ros2_ws/install/robot_action" />
+      <excludeFolder url="file://$MODULE_DIR$/ros2_ws/log/build_2026-03-11_22-26-52" />
+    </content>
     <orderEntry type="jdk" jdkName="Python 3.14" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
