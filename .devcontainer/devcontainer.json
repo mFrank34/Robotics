@@ -5,13 +5,13 @@
   "containerUser": "root",
   "runArgs": [
     "--network=host",
-    "-e", "DISPLAY=:0",
+    "-e", "DISPLAY=${DISPLAY}",
     "-v", "/tmp/.X11-unix:/tmp/.X11-unix:z",
+    "-v", "/home/frank/.Xauthority:/root/.Xauthority:rw",
     "--cap-add=SYS_PTRACE",
-    "--security-opt=seccomp=unconfined",
-    "--userns=keep-id"
+    "--security-opt=seccomp=unconfined"
   ],
-  "workspaceMount": "source=/home/frank/Projects/Robotics,target=/Workspace,type=bind",
+  "workspaceMount": "source=/home/frank/Projects/Robotics,target=/Workspace,type=bind,Z",
   "workspaceFolder": "/Workspace",
   "customizations": {
     "jetbrains": {
@@ -19,7 +19,7 @@
     }
   },
   "remoteEnv": {
-    "PYTHONPATH": "/opt/ros/humble/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages",
+    "XAUTHORITY": "/root/.Xauthority",
     "ROS_DISTRO": "humble"
   },
   "postCreateCommand": "git config --global --add safe.directory /Workspace && echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc"
