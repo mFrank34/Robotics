@@ -4,34 +4,6 @@
         <pose>0 0 0 0 0 0</pose>
 
         <link name="chassis">
-            <!-- Arrow shaft — centered at x=0, sitting on top of chassis -->
-            <visual name="arrow_shaft">
-                <pose>0 0 0.06 0 0 0</pose>
-                <geometry>
-                    <box>
-                        <size>0.25 0.03 0.03</size>
-                    </box>
-                </geometry>
-                <material>
-                    <ambient>1 1 0 1</ambient>
-                    <diffuse>1 1 0 1</diffuse>
-                </material>
-            </visual>
-
-            <!-- Arrow head — just ahead of shaft center, pointing forward -->
-            <visual name="arrow_head">
-                <pose>0.15 0 0.06 0 0 0</pose>
-                <geometry>
-                    <box>
-                        <size>0.08 0.12 0.03</size>
-                    </box>
-                </geometry>
-                <material>
-                    <ambient>1 1 0 1</ambient>
-                    <diffuse>1 1 0 1</diffuse>
-                </material>
-            </visual>
-
             <pose relative_to='__model__'>0 0 0.15 0 0 0</pose>
             <inertial>
                 <mass>1.5</mass>
@@ -61,12 +33,10 @@
                     </box>
                 </geometry>
             </collision>
-
         </link>
 
-        <!-- ========== FRONT LIDAR ========== -->
+        <!-- FRONT LIDAR -->
         <link name="front_lidar_link">
-            <!-- Sits on top front edge of chassis -->
             <pose relative_to="chassis">0.3 0 0.08 0 0 0</pose>
             <inertial>
                 <mass>0.1</mass>
@@ -76,7 +46,6 @@
                     <izz>0.001</izz>
                 </inertia>
             </inertial>
-            <!-- Small cylinder to visualise the sensor unit -->
             <visual name="visual">
                 <geometry>
                     <cylinder>
@@ -97,7 +66,6 @@
                     </cylinder>
                 </geometry>
             </collision>
-
             <sensor name="front_lidar" type="gpu_lidar">
                 <pose>0 0 0 0 0 0</pose>
                 <topic>front_lidar/scan</topic>
@@ -105,7 +73,6 @@
                 <lidar>
                     <scan>
                         <horizontal>
-                            <!-- 180 degree forward-facing sweep -->
                             <samples>360</samples>
                             <resolution>1</resolution>
                             <min_angle>-1.5707963</min_angle>
@@ -127,9 +94,8 @@
             </sensor>
         </link>
 
-        <!-- ========== BACK LIDAR ========== -->
+        <!-- BACK LIDAR -->
         <link name="back_lidar_link">
-            <!-- Sits on top back edge of chassis, rotated 180deg to face rearward -->
             <pose relative_to="chassis">-0.3 0 0.08 0 0 3.1415927</pose>
             <inertial>
                 <mass>0.1</mass>
@@ -159,7 +125,6 @@
                     </cylinder>
                 </geometry>
             </collision>
-
             <sensor name="back_lidar" type="gpu_lidar">
                 <pose>0 0 0 0 0 0</pose>
                 <topic>back_lidar/scan</topic>
@@ -167,7 +132,6 @@
                 <lidar>
                     <scan>
                         <horizontal>
-                            <!-- 180 degree rear-facing sweep -->
                             <samples>360</samples>
                             <resolution>1</resolution>
                             <min_angle>-1.5707963</min_angle>
@@ -189,7 +153,6 @@
             </sensor>
         </link>
 
-        <!-- Lidar joints (fixed to chassis) -->
         <joint name="front_lidar_joint" type="fixed">
             <parent>chassis</parent>
             <child>front_lidar_link</child>
@@ -200,7 +163,7 @@
             <child>back_lidar_link</child>
         </joint>
 
-        <!-- ========== WHEELS (unchanged) ========== -->
+        <!-- DRIVE WHEELS -->
         <link name="front_left_wheel">
             <pose relative_to="chassis">0.25 0.3 -0.05 0 0 0</pose>
             <inertial>
@@ -285,23 +248,23 @@
             </collision>
         </link>
 
-        <link name="rear_left_wheel">
-            <pose relative_to="chassis">-0.25 0.3 -0.05 0 0 0</pose>
+        <!-- REAR CASTER (replaces rear wheels) -->
+        <link name="rear_caster">
+            <!-- Centred at rear, z offset so sphere sits flush with drive wheels -->
+            <pose relative_to="chassis">-0.25 0 -0.05 0 0 0</pose>
             <inertial>
-                <mass>0.3</mass>
+                <mass>0.1</mass>
                 <inertia>
-                    <ixx>0.01</ixx>
-                    <iyy>0.01</iyy>
-                    <izz>0.02</izz>
+                    <ixx>0.001</ixx>
+                    <iyy>0.001</iyy>
+                    <izz>0.001</izz>
                 </inertia>
             </inertial>
             <visual name="visual">
-                <pose>0 0 0 1.5707963 0 0</pose>
                 <geometry>
-                    <cylinder>
+                    <sphere>
                         <radius>0.1</radius>
-                        <length>0.05</length>
-                    </cylinder>
+                    </sphere>
                 </geometry>
                 <material>
                     <ambient>0.1 0.1 0.1 1</ambient>
@@ -309,60 +272,17 @@
                 </material>
             </visual>
             <collision name="collision">
-                <pose>0 0 0 1.5707963 0 0</pose>
                 <geometry>
-                    <cylinder>
+                    <sphere>
                         <radius>0.1</radius>
-                        <length>0.05</length>
-                    </cylinder>
+                    </sphere>
                 </geometry>
                 <surface>
                     <friction>
                         <ode>
-                            <mu>1.0</mu>
-                            <mu2>1.0</mu2>
-                        </ode>
-                    </friction>
-                </surface>
-            </collision>
-        </link>
-
-        <link name="rear_right_wheel">
-            <pose relative_to="chassis">-0.25 -0.3 -0.05 0 0 0</pose>
-            <inertial>
-                <mass>0.3</mass>
-                <inertia>
-                    <ixx>0.01</ixx>
-                    <iyy>0.01</iyy>
-                    <izz>0.02</izz>
-                </inertia>
-            </inertial>
-            <visual name="visual">
-                <pose>0 0 0 1.5707963 0 0</pose>
-                <geometry>
-                    <cylinder>
-                        <radius>0.1</radius>
-                        <length>0.05</length>
-                    </cylinder>
-                </geometry>
-                <material>
-                    <ambient>0.1 0.1 0.1 1</ambient>
-                    <diffuse>0.1 0.1 0.1 1</diffuse>
-                </material>
-            </visual>
-            <collision name="collision">
-                <pose>0 0 0 1.5707963 0 0</pose>
-                <geometry>
-                    <cylinder>
-                        <radius>0.1</radius>
-                        <length>0.05</length>
-                    </cylinder>
-                </geometry>
-                <surface>
-                    <friction>
-                        <ode>
-                            <mu>1.0</mu>
-                            <mu2>1.0</mu2>
+                            <!-- Zero friction — slides freely in any direction -->
+                            <mu>0.0</mu>
+                            <mu2>0.0</mu2>
                         </ode>
                     </friction>
                 </surface>
@@ -385,20 +305,9 @@
             </axis>
         </joint>
 
-        <joint name="rear_left_joint" type="revolute">
+        <joint name="rear_caster_joint" type="fixed">
             <parent>chassis</parent>
-            <child>rear_left_wheel</child>
-            <axis>
-                <xyz expressed_in="__model__">0 1 0</xyz>
-            </axis>
-        </joint>
-
-        <joint name="rear_right_joint" type="revolute">
-            <parent>chassis</parent>
-            <child>rear_right_wheel</child>
-            <axis>
-                <xyz expressed_in="__model__">0 1 0</xyz>
-            </axis>
+            <child>rear_caster</child>
         </joint>
 
         <!-- PLUGINS -->
@@ -412,7 +321,6 @@
             <topic>cmd_vel</topic>
         </plugin>
 
-        <!-- Required for lidar sensors to work -->
         <plugin filename="libignition-gazebo-sensors-system.so"
                 name="ignition::gazebo::systems::Sensors">
             <render_engine>ogre2</render_engine>
