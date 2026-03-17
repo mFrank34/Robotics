@@ -211,3 +211,12 @@ install/
 log/
 
 .idea!/.bash_history
+!/.sdformat/
+
+!/.rviz2/
+
+!/.ros/
+
+!/.ignition/
+
+!/.gazebo/
